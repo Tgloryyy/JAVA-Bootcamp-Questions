@@ -7,36 +7,89 @@ public class Functions {
         Scanner in=new Scanner(System.in);
 
         int a=in.nextInt();
-//        int b=in.nextInt();
-//        int c=in.nextInt()
+        int b=in.nextInt();
+        int c=in.nextInt();
+
+        nsum(a);
 
 
-//        --------------------------------
-//        if(prime(a))
-//            System.out.println("is prime");
-//        else
-//            System.out.println("not prime");
-//        --------------------------------
-//        vote(a);
-//        oddeven(a);
-//        min(a,b,c);
-//        max(a,b,c);
+        primebtn(a,b);
+        // --------------------------------------------------------------------------------------
+        if(prime(a))
+            System.out.println("is prime");
+        else
+            System.out.println("not prime");
+        // --------------------------------------------------------------------------------------
+        palindrome(a);
+        System.out.println(factorial(a));
+        vote(a);
+        oddeven(a);
+        min(a,b,c);
+        max(a,b,c);
 
     }
-//--------------------------------------------------------------------------------------
-    //the method to print whether a number is prime or not
+    // --------------------------------------------------------------------------------------
+    //method to find the sum of n natural numbers
+    static void nsum(int x){
+        int sum=0;
+        for(int i=1;i<=x;i++){
+            sum=sum+i;
+        }
+        System.out.println(sum);
+    }
+// --------------------------------------------------------------------------------------
+//    method to find the prime number between two number
+
+   static void primebtn(int x,int y){
+        for(int i=x;i<y;i++){
+
+            if(prime(i))
+                System.out.println(i);
+        }
+   }
+
+   // --------------------------------------------------------------------------------------
+        //the method to print whether a number is prime or not
 
     static boolean prime(int x) {
-        if (x < 1 || x == 1) {
-            System.out.println("The number is not prime");
-        }
+        if (x < 1 || x == 1)
+            return false;
 
-        for (int i = 2; i < x; i++){
-            if (x % 2 == 0){
+        for (int i = 2; i<=x/2; i++){
+            if (x % i == 0){
             return false;
             }
         }
         return true;
+    }
+//
+// --------------------------------------------------------------------------------------
+//    method to find the palindrome number
+
+    static void palindrome(int x){
+        int reverse=0,xcopy=x;
+        while(xcopy>0){
+            int modulas=xcopy%10;
+            reverse=reverse*10+modulas;
+            xcopy=xcopy/10;
+        }
+        if(x==reverse)
+            System.out.println("The number is a palindrome number");
+        else
+            System.out.println("The number is not a palindrome number");
+    }
+
+//    method to find the factorial
+
+    static int factorial(int x){
+        int sum=1;
+        if(x==0 || x==1){
+            return 1;
+        }
+        for(int n=x;n>0;n--){
+             sum=sum*n;
+        }
+        return sum;
     }
 
 //--------------------------------------------------------------------------------------
@@ -68,16 +121,16 @@ public class Functions {
     static void min(int x,int y,int z){
         if(x<y){
             if(x<z){
-                System.out.println("the smallest is x "+x);
+                System.out.println(x);
             }
             else{
-                System.out.println("the smallest is z" +z);
+                System.out.println(z);
             }
         }
         else if(y<z){
-            System.out.println("the smallest is y "+y );
+            System.out.println(y);
         }
-        else System.out.println("the smallest is z " +z);
+        else System.out.println(z);
     }
 
 //--------------------------------------------------------------------------------------
@@ -86,16 +139,16 @@ public class Functions {
     static void max(int x,int y,int z){
        if(x>y){
            if(x>z){
-               System.out.println("the largest is x "+x);
+               System.out.println(x);
            }
            else{
-               System.out.println("the largest is z" +z);
+               System.out.println(z);
            }
        }
        else if(y>z){
-           System.out.println("the largest is y "+y );
+           System.out.println(y);
        }
-       else System.out.println("the largest is z " +z);
+       else System.out.println(z);
     }
 
 }
