@@ -4,30 +4,70 @@ import java.util.*;
 public class Solution {
     public static void main(String[] args) {
         Scanner in=new Scanner(System.in);
-        int [] ar={2,3,5,1,3};
+        int [] ar={8,1,2,2,3};
         int [][]arr={{1,5},{7,3},{3,5}};
 //
-        System.out.println(highestcandies(ar,5));
-//        System.out.println(Arrays.toString(highestcandies(ar,5)));
+//        System.out.println(numIdenticalPairs(ar));
+        System.out.println(Arrays.toString(smallerNumbersThanCurrent(ar)));
     }
+
+    //how many numbers are smaller then the other numbers
+    //https://leetcode.com/problems/how-many-numbers-are-smaller-than-the-current-number/
+
+    static int[] smallerNumbersThanCurrent(int[] nums) {
+
+        int arr[]=new int[nums.length];
+        for (int i = 0; i < nums.length; i++) {
+            int smaller=0;
+            for (int num : nums) {
+                if (nums[i] > num) {
+                    smaller++;
+                }
+            }
+
+            for (int k = 0; k < nums.length; k++) {
+                arr[i]=smaller;
+            }
+        }
+        return arr;
+    }
+
+
+    //no of good pairs
+    //https://leetcode.com/problems/number-of-good-pairs/
+
+    static int numIdenticalPairs(int[] nums) {
+
+        int goodpairs=0;
+        for (int i = 0; i < nums.length; i++) {
+            for (int j = i+1; j < nums.length; j++) {
+                if(nums[i]==nums[j]){
+                    goodpairs++;
+                }
+            }
+        }
+        return goodpairs;
+    }
+
     // kids with the highest number of candnies
     //https://leetcode.com/problems/kids-with-the-greatest-number-of-candies/
 
-    static List<Boolean> highestcandies(int[] nums,int n){
-        for (int i=0;i<nums.length;i++){
-            nums[i]=nums[i]+n;
-        }
+    static List<Boolean> highestcandies(int[] candies,int extracandies){
         int max=Integer.MIN_VALUE;
-        Boolean arr[]=new Boolean[nums.length];
-        for (int i = 0; i < nums.length; i++) {
-            if(nums[i]>=max){
-                max=nums[i];
+        for (int i = 0; i < candies.length; i++) {
+            if(candies[i]>max){
+                max=candies[i];
+            }
+        }
+        Boolean arr[]=new Boolean[candies.length];
+        for (int i = 0; i < candies.length; i++) {
+            if(candies[i]+extracandies>=max){
                 arr[i]=true;
             }
             else
                 arr[i]=false;
         }
-        return Arrays.asList(arr);
+       return  Arrays.asList(arr);
     }
 
     //shuffle the array
