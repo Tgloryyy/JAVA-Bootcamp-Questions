@@ -10,8 +10,26 @@ public class Solution {
         System.out.println(binary(ar,8));
 //        System.out.println(Arrays.toString(smallerNumbersThanCurrent(ar)));
     }
+    //Find smallest letter greatest than the largest
+    //https://leetcode.com/problems/find-smallest-letter-greater-than-target/
+
+    static char nextGreatestLetter(char[] letters, char target) {
+        int start=0;
+        int end=letters.length-1;
+        while(start<=end){
+            int mid=start+(end-start)/2;
+            if(target<letters[mid]){
+                end=mid-1;
+            }
+            else{
+                start=mid+1;
+            }
+        }
+        return letters[start%letters.length];
+    }
 
     //Binary search Algorithm.
+    //https://leetcode.com/problems/binary-search/submissions/
 
     static int binary(int[] arr,int target) {
         int start = 0;
@@ -49,7 +67,8 @@ public class Solution {
         int arr[]=new int[nums.length];
         for (int i = 0; i < nums.length; i++) {
             int smaller=0;
-            for (int num : nums) {
+            for (int j = 0; j < nums.length; j++) {
+                int num = nums[j];
                 if (nums[i] > num) {
                     smaller++;
                 }
